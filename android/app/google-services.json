@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "410758560388",
+    "project_id": "fir-proj-b7593",
+    "storage_bucket": "fir-proj-b7593.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410758560388:android:7e6d5674d75b1e446fa0d1",
+        "android_client_info": {
+          "package_name": "com.example.bank_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410758560388-e1jr23ip0kc5mhg90m4d8snroqi6ob9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA--TCJEBCs0MN2kfmbnA-MuyKVN7Fed_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410758560388-e1jr23ip0kc5mhg90m4d8snroqi6ob9u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
