@@ -46,6 +46,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   animated_text_kit: ^4.2.2
   firebase_auth: ^3.11.0
+  awesome_snackbar_content: ^0.0.8
   #cloud_firestore: ^3.5.0
 
 dev_dependencies:

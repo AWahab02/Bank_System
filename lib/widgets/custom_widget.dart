@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class CustomWidget extends StatelessWidget {
-  const CustomWidget({Key? key, required this.name, required this.image}) : super(key: key);
+  const CustomWidget({Key? key, required this.name, required this.image})
+      : super(key: key);
 
   final String name;
   final String image;
@@ -16,18 +16,17 @@ class CustomWidget extends StatelessWidget {
         width: 130,
         height: 140,
         decoration: BoxDecoration(
-          color: Color(0xff00102a),
+          color: const Color(0xff00102a),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 30),
               child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Image(
-                    image:
-                    AssetImage(image),
+                    image: AssetImage(image),
                     width: 50,
                   )),
             ),

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bank_system/Bill_Payment.dart';
 import 'package:bank_system/Deposit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,50 +7,44 @@ import 'package:google_fonts/google_fonts.dart';
 import 'Transfer.dart';
 import 'Settings.dart';
 import 'widgets/custom_widget.dart';
-import 'dart:developer';
-
 
 final usersRef = FirebaseFirestore.instance.collection('Account');
 
 class MainBoard extends StatefulWidget {
-
   final String email;
   final String uID;
 
-  const MainBoard({Key? key, required this.email, required this.uID}) : super(key: key);
-
-
+  const MainBoard({Key? key, required this.email, required this.uID})
+      : super(key: key);
 
   @override
   _MainBoardState createState() => _MainBoardState();
 }
 
 class _MainBoardState extends State<MainBoard> {
-
   double opacity_t = 1.0;
   double opacity_b = 1.0;
   double opacity_d = 1.0;
   double opacity_s = 1.0;
 
-
   void handletimeout_s() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Transfer()));
+        .push(MaterialPageRoute(builder: (context) => const Transfer()));
   }
 
   void handletimeout_b() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Bill_Payment()));
+        .push(MaterialPageRoute(builder: (context) => const Bill_Payment()));
   }
 
   void handletimeout_d() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Deposit()));
+        .push(MaterialPageRoute(builder: (context) => const Deposit()));
   }
 
   void handletimeout_se() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Settingss()));
+        .push(MaterialPageRoute(builder: (context) => const Settingss()));
   }
 
   @override
@@ -61,25 +53,24 @@ class _MainBoardState extends State<MainBoard> {
     super.initState();
   }
 
-  getUsersById()
-  {
-
-  }
+  getUsersById() {}
 
   @override
   Widget build(BuildContext context) {
-
     //var query = FirebaseFirestore.instance.collection("Account").where("Email", isEqualTo: "awzahid02@gmail.com").snapshots();
-    var query = FirebaseFirestore.instance.collection("Account").where("email", isEqualTo: "awzahid02@gmail.com").get();
+    var query = FirebaseFirestore.instance
+        .collection("Account")
+        .where("email", isEqualTo: "awzahid02@gmail.com")
+        .get();
     return Scaffold(
       backgroundColor: const Color(0xff041f4a),
       appBar: AppBar(
-        backgroundColor: const Color(0xff00102a),
-        title: Text('Dashboard')
-      ),
+          backgroundColor: const Color(0xff00102a),
+          title: const Text('Dashboard')),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(top:50, bottom: 30, left: 30, right: 30),
+          padding:
+              const EdgeInsets.only(top: 50, bottom: 30, left: 30, right: 30),
           child: Column(
             children: [
               Container(
@@ -98,10 +89,14 @@ class _MainBoardState extends State<MainBoard> {
                       Padding(
                         padding: const EdgeInsets.only(top: 18.0),
                         child: StreamBuilder(
-                            stream: FirebaseFirestore.instance.collection("Account").doc(widget.uID).snapshots(),
+                            stream: FirebaseFirestore.instance
+                                .collection("Account")
+                                .doc(widget.uID)
+                                .snapshots(),
                             builder: (context, snapshot) {
-                              if(snapshot.hasData){
-                                return Text( "${snapshot.data!.get("fName").toString()}",
+                              if (snapshot.hasData) {
+                                return Text(
+                                  snapshot.data!.get("fName").toString(),
                                   style: GoogleFonts.montserrat(
                                       fontSize: 24,
                                       fontWeight: FontWeight.w600,
@@ -109,8 +104,7 @@ class _MainBoardState extends State<MainBoard> {
                                 );
                               }
                               return const Text("Not Available");
-                            }
-                        ),
+                            }),
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -129,19 +123,22 @@ class _MainBoardState extends State<MainBoard> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 30, top: 10),
                           child: StreamBuilder(
-                            stream: FirebaseFirestore.instance.collection("Account").doc(widget.uID).snapshots(),
-                            builder: (context, snapshot) {
-                              if(snapshot.hasData){
-                                return Text( "${snapshot.data!.get("Balance").toString()} Rs",
-                                style: GoogleFonts.montserrat(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                              );
-                              }
-                              return const Text("Not Available");
-                            }
-                          ),
+                              stream: FirebaseFirestore.instance
+                                  .collection("Account")
+                                  .doc(widget.uID)
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Text(
+                                    "${snapshot.data!.get("Balance").toString()} Rs",
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white),
+                                  );
+                                }
+                                return const Text("Not Available");
+                              }),
                         ),
                       ),
                       Align(
@@ -173,37 +170,43 @@ class _MainBoardState extends State<MainBoard> {
                 child: Row(
                   children: [
                     CupertinoButton(
-                      onPressed: (){
+                      onPressed: () {
                         handletimeout_s();
                       },
-                      child: const CustomWidget(name: "Transfer", image: "assets/transfer.png",),
+                      child: const CustomWidget(
+                        name: "Transfer",
+                        image: "assets/transfer.png",
+                      ),
                     ),
                     CupertinoButton(
-                        child: const CustomWidget(name: "Bill Payment", image: "assets/dollar.png",),
-                        onPressed: (){
-                      handletimeout_b();
-                    })
+                        child: const CustomWidget(
+                          name: "Bill Payment",
+                          image: "assets/dollar.png",
+                        ),
+                        onPressed: () {
+                          handletimeout_b();
+                        })
                   ],
                 ),
               ),
               Center(
                 child: Row(
                   children: [
-
                     CupertinoButton(
-                      onPressed: (){
+                      onPressed: () {
                         handletimeout_d();
                       },
-                      child: const CustomWidget(name: "Deposit", image: "assets/card.png",),
+                      child: const CustomWidget(
+                        name: "Deposit",
+                        image: "assets/card.png",
+                      ),
                     ),
                     CupertinoButton(
-                        child: const CustomWidget(name: "Settings", image: "assets/settings.png"),
-                        onPressed: (){
+                        child: const CustomWidget(
+                            name: "Settings", image: "assets/settings.png"),
+                        onPressed: () {
                           handletimeout_se();
                         })
-
-
-
                   ],
                 ),
               ),
@@ -214,9 +217,3 @@ class _MainBoardState extends State<MainBoard> {
     );
   }
 }
-
-
-
-
-
-

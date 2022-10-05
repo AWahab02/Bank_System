@@ -10,7 +10,8 @@ class Reg_success extends StatefulWidget {
   _Reg_successState createState() => _Reg_successState();
 }
 
-class _Reg_successState extends State<Reg_success> with SingleTickerProviderStateMixin {
+class _Reg_successState extends State<Reg_success>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
 
@@ -19,54 +20,51 @@ class _Reg_successState extends State<Reg_success> with SingleTickerProviderStat
     super.initState();
 
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
 
-    _animation = new Tween<double>(begin: 0, end: 1).animate(
-        new CurvedAnimation(
-            parent: _animationController, curve: Curves.easeInOutCirc));
+    _animation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
+        parent: _animationController, curve: Curves.easeInOutCirc));
 
     _showCheck();
 
-    Timer(Duration(seconds: 2), handletimeout);
-
-
+    Timer(const Duration(seconds: 2), handletimeout);
   }
 
-  void handletimeout()
-  {
-    Navigator
-        .pop(context);
+  void handletimeout() {
+    Navigator.pop(context);
   }
 
   void _showCheck() {
     _animationController.forward();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff041f4a),
+      backgroundColor: const Color(0xff041f4a),
       body: Center(
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
                 child: AnimatedCheck(
-                  progress: _animation,
-                  size: 200,
-                )),
+              progress: _animation,
+              size: 200,
+            )),
 
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text('Registration Succesful', style: GoogleFonts.montserrat(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
-              ),              //child: Text('Registration succesful', style: GoogleFonts.montserrat(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                'Registration Succesful',
+                style: GoogleFonts.montserrat(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ), //child: Text('Registration succesful', style: GoogleFonts.montserrat(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
           ],
         ),
-
       ),
     );
   }
 }
-

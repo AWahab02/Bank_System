@@ -25,7 +25,7 @@ class _Login_SuccessState extends State<Login_Success>
     super.initState();
 
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
 
     _animation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
         parent: _animationController, curve: Curves.easeInOutCirc));
@@ -49,18 +49,18 @@ class _Login_SuccessState extends State<Login_Success>
     _animationController.forward();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff041f4a),
+      backgroundColor: const Color(0xff041f4a),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-                child: AnimatedCheck(
+            AnimatedCheck(
               progress: _animation,
               size: 200,
-            )),
+            ),
 
             Padding(
               padding: const EdgeInsets.all(10),

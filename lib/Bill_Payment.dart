@@ -11,10 +11,10 @@ class _Bill_PaymentState extends State<Bill_Payment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff041f4a),
+      backgroundColor: const Color(0xff041f4a),
       appBar: AppBar(
-        backgroundColor: Color(0xff00102a),
-        title: Text('Bill Transfer'),
+        backgroundColor: const Color(0xff00102a),
+        title: const Text('Bill Transfer'),
       ),
     );
   }
