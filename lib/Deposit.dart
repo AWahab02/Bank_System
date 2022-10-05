@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +14,19 @@ class Deposit extends StatefulWidget {
 }
 
 class _DepositState extends State<Deposit> {
+
+  final TextEditingController _depositAmount = TextEditingController();
+
+  void deposit(){
+
+    
+    final num deposition=int.parse(_depositAmount.text);
+
+    FirebaseFirestore.instance.collection("Account").doc("rqDTzwDqIVgQmZHrUc3rT9Xhc1Z2")
+        .update({
+      "Balance": FieldValue.increment(deposition)});
+    }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +51,7 @@ class _DepositState extends State<Deposit> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              controller: _depositAmount,
               obscureText: false,
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
@@ -52,7 +68,7 @@ class _DepositState extends State<Deposit> {
                 child: SizedBox(
                   width: 100,
                   child: ElevatedButton(
-                    onPressed: null,
+                    onPressed: deposit,
                     child: Text('Deposit', style: GoogleFonts.montserrat(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'registration_page.dart';
@@ -20,7 +21,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+
   bool isLoading = false;
+  String user_doc_id="";
 
   Future signIn() async{
 
@@ -33,11 +36,12 @@ class _LoginScreenState extends State<LoginScreen> {
     if(user!=null)
     {
       setState(() {
+        //user_doc_id=FirebaseFirestore.instance.collection('Account').where()
         _success=true;
         isLoading=false;
         Navigator.of(context)
             .push(
-            MaterialPageRoute(builder: (context) => Login_Success(email: _emailController.text))
+            MaterialPageRoute(builder: (context) => Login_Success(email: _emailController.text, userId: user.uid))
         );
       });
     }

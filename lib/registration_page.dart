@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,19 +17,36 @@ class _Registration_pageState extends State<Registration_page> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fnameController = TextEditingController();
+  final TextEditingController _lnameController = TextEditingController();
+
   late bool _success;
   late String _userEmail;
+  bool isLoading = false;
+
 
   void _register() async
   {
+    setState(() {
+      isLoading=true;
+    });
     final User? user = (
     await _auth.createUserWithEmailAndPassword(email: _emailController.text, password: _passwordController.text)
     ).user;
 
     if(user!=null)
       {
+        FirebaseFirestore.instance.collection("Account").doc(user.uid).set({
+          "Email" : _emailController.text,
+          "Balance" : 0,
+          "fName" : _fnameController.text,
+          "lName" : _lnameController.text,
+        });
+
         setState(() {
+
           _success=true;
+          isLoading=false;
           _userEmail = user.email!;
 
           Navigator.of(context)
@@ -47,12 +65,12 @@ class _Registration_pageState extends State<Registration_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff041f4a),
+      backgroundColor: const Color(0xff041f4a),
       body: SingleChildScrollView(
         child: Column(
 
           children: [
-            Center(
+            const Center(
               child: Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Image(image: AssetImage('assets/apex.png'),width: 200,),
@@ -68,8 +86,9 @@ class _Registration_pageState extends State<Registration_page> {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: EdgeInsets.all(15.0),
               child: TextField(
+                controller: _fnameController,
                 obscureText: false,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -80,9 +99,10 @@ class _Registration_pageState extends State<Registration_page> {
 
             ),
 
-            Padding(
-              padding: const EdgeInsets.all(15.0),
+             Padding(
+              padding: EdgeInsets.all(15.0),
               child: TextField(
+                controller: _lnameController,
                 obscureText: false,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -99,7 +119,7 @@ class _Registration_pageState extends State<Registration_page> {
                 controller: _emailController,
                 obscureText: false,
                 style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Email',
                   hintStyle: TextStyle(color: Colors.white),
                   prefixIcon: Icon(Icons.mail, color: Colors.white),
@@ -113,8 +133,8 @@ class _Registration_pageState extends State<Registration_page> {
               child: TextField(
                 controller: _passwordController,
                 obscureText: true,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
                   hintText: 'Password',
                   hintStyle: TextStyle(color: Colors.white),
                   prefixIcon: Icon(Icons.password_outlined, color: Colors.white),
@@ -123,6 +143,7 @@ class _Registration_pageState extends State<Registration_page> {
 
             ),
 
+            isLoading?Center(child: CircularProgressIndicator()) :
             Center(
               child: Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -140,7 +161,7 @@ class _Registration_pageState extends State<Registration_page> {
               ),
             ),
 
-            Padding(padding: EdgeInsets.all(14.0),
+            Padding(padding: const EdgeInsets.all(14.0),
               child: Center(
                 child: TextButton(
                   onPressed: (){
