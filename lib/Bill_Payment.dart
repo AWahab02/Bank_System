@@ -91,12 +91,30 @@ class _Bill_PaymentState extends State<Bill_Payment> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+
+          const Padding(
+            padding: EdgeInsets.all(14.0),
+            child: Center(
+              child: Image(
+                image: AssetImage('assets/apex.png'),
+                width: 230,
+              ),
+            ),
+          ),
+          Center(
+              child: Text(
+                'ATLAS Banking',
+                style: GoogleFonts.montserrat(
+                    fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
+              )),
+
           Center(
               child: Text(
                 'Bill Payment',
                 style: GoogleFonts.montserrat(
-                    fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
+                    fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               )),
+
 
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -115,24 +133,17 @@ class _Bill_PaymentState extends State<Bill_Payment> {
           Center(
             child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  width: 100,
-                  child: isTransferring
-                      ? const SizedBox(
-                    height: 60,
-                    width: 2,
-                    child: CircularProgressIndicator(),
-                      )
-                      : ElevatedButton(
-                    onPressed: PayBill,
-                    style: ElevatedButton.styleFrom(),
-                    child: Text(
-                      'Pay Bill',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
+                child: isTransferring
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                  onPressed: PayBill,
+                  style: ElevatedButton.styleFrom(),
+                  child: Text(
+                    'Pay Bill',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                 )),
           ),

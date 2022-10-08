@@ -59,12 +59,30 @@ class _DepositState extends State<Deposit> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+
+          const Padding(
+            padding: EdgeInsets.all(14.0),
+            child: Center(
+              child: Image(
+                image: AssetImage('assets/apex.png'),
+                width: 230,
+              ),
+            ),
+          ),
           Center(
               child: Text(
-            'Deposit Amount',
-            style: GoogleFonts.montserrat(
-                fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
-          )),
+                'ATLAS Banking',
+                style: GoogleFonts.montserrat(
+                    fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
+              )),
+
+          Center(
+              child: Text(
+                'Balance Deposition',
+                style: GoogleFonts.montserrat(
+                    fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              )),
+
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
@@ -72,7 +90,7 @@ class _DepositState extends State<Deposit> {
               obscureText: false,
               style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
-                hintText: 'Enter Amount',
+                hintText: 'Enter Deposit Amount',
                 hintStyle: TextStyle(color: Colors.white),
                 prefixIcon:
                     Icon(Icons.attach_money_outlined, color: Colors.white),
@@ -82,14 +100,8 @@ class _DepositState extends State<Deposit> {
           Center(
             child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  width: 100,
                   child: isDepositing
-                      ? const SizedBox(
-                        height: 60,
-                    width: 2,
-                        child: CircularProgressIndicator(),
-                      )
+                      ? CircularProgressIndicator()
                       : ElevatedButton(
                           onPressed: deposit,
                           style: ElevatedButton.styleFrom(),
@@ -102,7 +114,6 @@ class _DepositState extends State<Deposit> {
                           ),
                         ),
                 )),
-          ),
         ],
       ),
     );

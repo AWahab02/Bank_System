@@ -1,4 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:bank_system/PasswordResetPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'registration_page.dart';
@@ -145,6 +146,26 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       )),
                 ),
+
+
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ResetPassword()));
+                },
+                child: Text('Forgot Password?',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white)),
+              ),
+            ),
+          ),
+
+
           Padding(
             padding: const EdgeInsets.all(14.0),
             child: Center(

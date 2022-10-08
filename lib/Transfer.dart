@@ -126,12 +126,31 @@ class _TransferState extends State<Transfer> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+
+          const Padding(
+            padding: EdgeInsets.all(14.0),
+            child: Center(
+              child: Image(
+                image: AssetImage('assets/apex.png'),
+                width: 230,
+              ),
+            ),
+          ),
           Center(
               child: Text(
-            'Transfer Amount',
-            style: GoogleFonts.montserrat(
-                fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
-          )),
+                'ATLAS Banking',
+                style: GoogleFonts.montserrat(
+                    fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
+              )),
+
+          Center(
+              child: Text(
+                'Money Transfer',
+                style: GoogleFonts.montserrat(
+                    fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              )),
+
+
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
@@ -162,27 +181,21 @@ class _TransferState extends State<Transfer> {
           Center(
             child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  width: 100,
                   child: isTransferring
-                      ? const SizedBox(
-                    height: 60,
-                    width: 2,
-                      child: CircularProgressIndicator(),
-                      )
+                      ? CircularProgressIndicator()
                       : ElevatedButton(
                           onPressed: transfer,
                           style: ElevatedButton.styleFrom(),
                           child: Text(
                             'Transfer',
                             style: GoogleFonts.montserrat(
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ),
                         ),
                 )),
-          ),
+
 
         ],
       ),
