@@ -1,6 +1,9 @@
 import 'package:bank_system/Bill_Payment.dart';
 import 'package:bank_system/Deposit.dart';
+import 'package:bank_system/login_page.dart';
+import 'package:bank_system/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,8 +68,21 @@ class _MainBoardState extends State<MainBoard> {
     return Scaffold(
       backgroundColor: const Color(0xff041f4a),
       appBar: AppBar(
-          backgroundColor: const Color(0xff00102a),
-          title: const Text('Dashboard')),
+        backgroundColor: const Color(0xff00102a),
+        title: const Text('Dashboard'),
+        actions: [
+          TextButton(
+              onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));},
+              child: Text(
+                'Logout',
+                style: GoogleFonts.montserrat(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+          ),
+        ],
+      ),
       body: Center(
         child: Padding(
           padding:
