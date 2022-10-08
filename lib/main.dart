@@ -1,9 +1,11 @@
+import 'package:bank_system/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:bank_system/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'SplashScreen.dart';
 
 final db = FirebaseFirestore.instance;
 
